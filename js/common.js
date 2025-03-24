@@ -7,3 +7,18 @@ function toggleSearch() {
         searchBar.style.display = 'none';
     }
 }
+
+const searchInput = document.getElementById('search-input');
+const clearBtn = document.getElementById('clear-btn');
+
+// Show clear button when typing
+searchInput.addEventListener('input', function() {
+    clearBtn.style.display = this.value ? 'block' : 'none';
+});
+
+// Clear input when X is clicked
+clearBtn.addEventListener('click', function() {
+    searchInput.value = '';
+    clearBtn.style.display = 'none';
+    searchInput.focus();
+});

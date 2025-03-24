@@ -4,44 +4,35 @@ body {
     font-family:'Lucida Sans', 'Lucida Sans Unicode', Verdana, sans-serif;
     color: #fff;
 }
-/* Navbar */
-.navBar {
+/* Navbar start*/
+.fullNavBar {
     background-color: rgba(0, 0, 0, 0.7) !important;
     padding:0;
 }
-.navbaNav .nav-link {
-    font-size: 1.1rem;
-    padding: 20px 40px;
-}
-.navbaNav .nav-link:hover {
-    background: #201f1f;
-}
-.navbaNav .nav-link.active {
-    color: #e50914 !important;
-}
-.dropdownMenuItems:hover{
-    background-color: #696868;
-}
 /* Dropdown Styles */
-.dropdownMenu {
+.dropdownMenuItems:hover {
     background-color: #8a8888;
-    color: white;
+    color: black;
+}
+/* Navbar end*/
+/* Search Dropdown Form */
+.searchDropDown {
+    animation: fadeIn 0.2s ease-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.input:focus{
+    border: none;
+    box-shadow: none;
+}
+.search-btn:focus{
     border: none;
 }
 /* Search Dropdown Form */
-.dropdownMenu form {
-    padding: 10px;
-}
-.dropdownMenu input {
-    background-color: #6d6d6d;
-    color: #fff;
-    border: none;
-}
-.dropdownMenu input:focus {
-    background-color: #696868;
-    color: #fff;
-    box-shadow: none;
-}
+
+
 body {
     width: 100%;
     background-image: url('../img/bg.jpg');
