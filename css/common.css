@@ -14,7 +14,40 @@ body {
     background-color: #8a8888;
     color: black;
 }
-/* Navbar end*/
+
+/* Mobile Drawer Styles */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background-color: #343a40;
+    z-index: 1050;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+}
+.mobile-drawer.show {
+    right: 0;
+}
+.drawer-content {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+/* Adjust the navbar toggler for mobile */
+@media (max-width: 991.98px) {
+    .navbar-toggler.d-lg-none {
+        display: block !important;
+    }
+    .navbar-toggler.d-none.d-lg-block {
+        display: none !important;
+    }
+    #navbarNav {
+        display: none !important;
+    }
+}
+/* Adjust the navbar toggler for mobile */
+
 /* Search Dropdown Form */
 .searchDropDown {
     animation: fadeIn 0.2s ease-out;
@@ -30,7 +63,13 @@ body {
 .search-btn:focus{
     border: none;
 }
+@media (max-width: 991px) { 
+    .dropdown-menu[data-bs-popper]{
+        left: -130px;
+    }
+  }
 /* Search Dropdown Form */
+/* Navbar end*/
 
 
 body {
@@ -47,3 +86,82 @@ body {
     background: rgba(0, 0, 0, 0.7); 
     z-index: 1;
 }
+
+/* code for footer section start  */
+.footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    border-top: 3px solid #e50914;
+}
+.footer a {
+    transition: all 0.3s ease;
+}
+.footer a:hover {
+    color: #e50914 !important;
+    padding-left: 5px;
+}
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+.social-icons a:hover {
+    background-color: #242222e6;
+    transform: translateY(-3px);
+}
+.footer h5 {
+    position: relative;
+    padding-bottom: 10px;
+}
+.footer h5:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background: #e50914;
+}
+/* code for footer section end  */
+
+
+/* back to top button code start  */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease-in-out;
+  z-index: 999;
+}
+.back-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top-btn i {
+  transition: transform 0.3s ease;
+}
+.back-to-top-btn:hover i {
+  transform: translateY(-3px);
+}
+/* back to top button code end  */
