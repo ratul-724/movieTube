@@ -1,0 +1,35 @@
+/* Base styles (desktop/large screens) */
+.movieBanner {
+    width: 100%;
+    height: 50vh;                  /* Large initial height */
+    background-image: url('../img/movieBanner.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;        /* Fill space (may crop edges) */
+    position: relative;
+    z-index: -1;
+    margin-top: 7%;
+}
+
+/* Tablet (medium screens) */
+@media (max-width: 1024px) {
+    .movieBanner {
+        height: 40vh;             /* Slightly smaller */
+    }
+}
+
+/* Mobile (small screens) */
+@media (max-width: 768px) {
+    .movieBanner {
+        height: 30vh;             /* Much shorter on phones */
+        background-size: contain; /* Show full image (no cropping) */
+        background-color: #000;   /* Fallback for letterboxing */
+    }
+}
+
+/* Tiny screens (optional) */
+@media (max-width: 480px) {
+    .movieBanner {
+        height: 25vh;             /* Ultra-compact */
+    }
+}

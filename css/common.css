@@ -3,18 +3,73 @@ body {
     padding: 0;
     font-family:'Lucida Sans', 'Lucida Sans Unicode', Verdana, sans-serif;
     color: #fff;
+    width: 100%;
+    background-image: url('../img/bg.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    position: relative; 
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 1;
 }
 /* Navbar start*/
 .fullNavBar {
     background-color: rgba(0, 0, 0, 0.7) !important;
     padding:0;
 }
+/* Desktop navigation hover effects */
+.fullNavBar .navbar-nav .nav-item {
+    transition: all 0.5s ease;
+}
+.fullNavBar .navbar-nav .nav-item:hover {
+    background-color: rgba(114, 112, 112, 0.306); 
+    transform: translateY(-3px);
+}
+.fullNavBar .navbar-nav .nav-item:hover .nav-link {
+    color: #e50914 !important;
+}
+/* Dropdown menu items */
+.fullNavBar .dropdown-menu .dropdown-item {
+    transition: all 0.3s ease;
+}
+.fullNavBar .dropdown-menu .dropdown-item:hover {
+    color: #e50914 !important;
+    background-color: rgba(229, 9, 20, 0.1) !important;
+    transform: translateX(3px);
+}
+/* Mobile navigation hover effects */
+.mobile-drawer .navbar-nav .nav-item {
+    transition: all 0.5s ease;
+}
+.mobile-drawer .navbar-nav .nav-item:hover {
+    background-color: rgba(114, 112, 112, 0.306); 
+}
+.mobile-drawer .navbar-nav .nav-item .nav-link{
+    transition: all 0.5s ease;
+    padding: 0 20px;
+}
+.mobile-drawer .navbar-nav .nav-item:hover .nav-link {
+    color: #e50914 !important;
+    transform: translateX(3px);
+}
+/* Mobile dropdown menu items */
+.mobile-drawer .dropdown-menu .dropdown-item {
+    transition: all 0.3s ease;
+}
+.mobile-drawer .dropdown-menu .dropdown-item:hover {
+    color: #e50914 !important;
+    background-color: rgba(229, 9, 20, 0.1) !important;
+    transform: translateX(3px);
+}
 /* Dropdown Styles */
 .dropdownMenuItems:hover {
     background-color: #8a8888;
     color: black;
 }
-
 /* Mobile Drawer Styles */
 .mobile-drawer {
     position: fixed;
@@ -70,22 +125,6 @@ body {
   }
 /* Search Dropdown Form */
 /* Navbar end*/
-
-
-body {
-    width: 100%;
-    background-image: url('../img/bg.jpg');
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    position: relative; 
-}
-.overlay {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); 
-    z-index: 1;
-}
 
 /* code for footer section start  */
 .footer {
