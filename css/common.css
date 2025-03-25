@@ -103,28 +103,78 @@ body {
 }
 /* Adjust the navbar toggler for mobile */
 
-/* Search Dropdown Form */
-.searchDropDown {
-    animation: fadeIn 0.2s ease-out;
+
+/* Navbar end*/
+
+
+/* Custom styles for the search bar start */
+.search-container {
+    background-color: #988e8e79;
+    border-radius: 50px;
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+.search-container:focus-within {
+    box-shadow: 0 4px 20px rgba(235, 183, 189, 0.212);
 }
-.input:focus{
+.filter-btn {
+    background-color: #1e18186b;
+    color: white;
     border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-btn:hover {
+    background-color: #0000008b;
+}
+.search-input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    width: 100%;
+}
+.search-input:focus {
+    outline: none;
     box-shadow: none;
 }
-.search-btn:focus{
+.search-btn {
+    background-color: #1e181879;
+    color: white;
     border: none;
+    border-radius: 50px;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
 }
-@media (max-width: 991px) { 
-    .dropdown-menu[data-bs-popper]{
-        left: -130px;
-    }
-  }
-/* Search Dropdown Form */
-/* Navbar end*/
+.search-btn:hover {
+    background-color: #0000008b;
+    transform: scale(1.05);
+}
+/* Dropdown filter menu */
+.filter-dropdown {
+    min-width: 250px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.filter-option {
+    padding: 10px 15px;
+    color: #ddd;
+    transition: all 0.2s ease;
+}
+.filter-option:hover {
+    background-color: #dc3545;
+    color: white;
+}
+.filter-option input[type="checkbox"] {
+    margin-right: 10px;
+}
+/* Custom styles for the search bar  end*/
+
 
 /* code for footer section start  */
 .footer {

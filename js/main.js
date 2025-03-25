@@ -1,7 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 const counters = document.querySelectorAll('.count');
-const speed = 100; // The lower the faster
+const speed = 200; // The lower the faster
 
 counters.forEach(counter => {
     const target = +counter.getAttribute('data-target');

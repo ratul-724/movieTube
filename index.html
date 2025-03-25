@@ -11,10 +11,10 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="fullNavBar navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="fullNavBar navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container d-flex justify-content-between">
             <!-- Logo -->
-            <a class="navbar-brand" href="#"><img src="img/logo.png" width="140px" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="140px" alt=""></a>
 
             <!-- Navbar Links - Hidden on mobile -->
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -48,38 +48,14 @@
             <div class="d-flex">
                 <!-- Search and User Section -->
                 <div class="d-flex align-items-center">
-                    <!-- Search Dropdown -->
-                    <div class="dropdown me-4">
-                        <a class="nav-link fs-4" href="#" id="searchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-search text-white"></i>
-                        </a>
-                        <div class="dropdownMenu searchDropDown dropdown-menu dropdown-menu-lg-end me-lg-0 me-5 p-1 rounded-5 border-primary" aria-labelledby="searchDropdown" style="width: 250px; background-color: rgba(234, 237, 236, 0.854); ">
-                            <form class="w-100 position-relative rounded-5" >
-                                <div class="input-group rounded-5">
-    
-                                    <input class="form-control input m-0 p-1 rounded-5 pe-3 border-0" 
-                                    type="search" id="search-input"
-                                    placeholder="Search movies..." 
-                                    aria-label="Search" name="search" style=" background-color: rgba(0, 0, 0, 0);">
-    
-                                    <div class="searchAllBtns d-flex align-items-center">
-                                        <button id="clear-btn" class="btn position-absolute end-0 p-0" type="button" style="display: none; margin-right: 43px; z-index: 5;">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-    
-                                        <button class="btn search-btn btn-danger rounded-5 " type="submit" name="search">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-    
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <!-- Search  -->
+                    <a class="nav-link mx-3" href="#searchSection" >
+                        <i class="fas fa-search text-white fs-3" style="font-size: 1.5rem;"></i>
+                    </a>
         
-                    <!-- User Dropdown -->
-                    <div class="">
-                        <a class="nav-link" href="user.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- User  -->
+                    <div>
+                        <a class="nav-link" href="user.html" >
                             <i class="fas fa-user-circle text-white fs-3" style="font-size: 1.5rem;"></i>
                         </a>
                     </div>
@@ -134,7 +110,7 @@
 <div class="overlay">
 <main class="position-relative">
     <!-- Hero Section start-->
-    <section class="hero-section mt-5 pt-3 px-4 px-lg-0">
+    <section class="hero-section px-4 px-lg-0">
         <div class="container">
             <div class="row align-items-center heroSection " >
                 <div class="col-lg-8 col-md-12 text-white text-center text-lg-start mb-4 mb-lg-0 mt-4 mt-lg-0">
@@ -145,7 +121,7 @@
                         <div class="row gx-2 gy-3 justify-content-center">
                           <!-- Movie Box -->
                           <div class="col-6 col-lg-3">
-                            <a href="#allContentSection" class="text-decoration-none">
+                            <a href="movie.html" class="text-decoration-none">
                               <div class="text-center rounded-2 py-4 d-flex flex-column justify-content-center align-items-center h-100 hoverForContentBox" 
                                    style="background-color: rgba(255, 0, 0, 0.6); height: 150px;">
                                 <h3 class="mb-1 text-white">MOVIES</h3>
@@ -156,7 +132,7 @@
                           
                           <!-- Web Series Box -->
                           <div class="col-6 col-lg-3">
-                            <a href="#allContentSection" class="text-decoration-none" >
+                            <a href="movie.html" class="text-decoration-none" >
                               <div class="text-center py-4 rounded-2 d-flex flex-column justify-content-center align-items-center h-100 hoverForContentBox" 
                                    style="background-color: rgba(148, 10, 202, 0.454); height: 150px;">
                                 <h3 class="mb-1 text-white">WEB SERIES</h3>
@@ -167,7 +143,7 @@
                           
                           <!-- Drama Box -->
                           <div class="col-6 col-lg-3">
-                            <a href="#allContentSection" class="text-decoration-none">
+                            <a href="movie.html" class="text-decoration-none">
                               <div class="text-center py-4 rounded-2 d-flex flex-column justify-content-center align-items-center h-100 hoverForContentBox" 
                                    style="background-color: rgba(133, 137, 133, 0.6); height: 150px;">
                                 <h3 class="mb-1 text-white">DRAMA</h3>
@@ -178,7 +154,7 @@
                           
                           <!-- More Box -->
                           <div class="col-6 col-lg-3">
-                            <a href="#allContentSection" class="text-decoration-none">
+                            <a href="movie.html" class="text-decoration-none">
                               <div class="text-center py-4 rounded-2 d-flex flex-column justify-content-center align-items-center h-100 hoverForContentBox" 
                                    style="background-color: rgba(8, 181, 169, 0.6); height: 150px;">
                                 <h3 class="mb-0 text-white">MORE...</h3>
@@ -192,7 +168,7 @@
 
                 <div class="col-lg-4 col-md-12 pt-lg-4">
                     <!-- Bootstrap Carousel Slider -->
-                    <div id="heroSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500">
+                    <div id="heroSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
                         <!-- Indicators -->
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active" aria-current="true"></button>
@@ -242,12 +218,86 @@
     </section>
    <!-- Hero Section end-->
 
+
+    <!-- search bar start here  -->
+    <div class="mt-4 pt-1"  id="searchSection">
+        <section class="container-fluid my-5 pt-5 px-4 px-lg-5 " >
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10 col-xl-8">
+                    <div class="search-container d-flex align-items-center">
+                        <!-- Filter Button (Left Side) -->
+                        <div class="dropdown">
+                            <button class="filter-btn d-flex align-items-center py-3 me-2 dropdown-toggle" 
+                                    type="button" 
+                                    id="filterDropdown" 
+                                    data-bs-toggle="dropdown" 
+                                    aria-expanded="false">
+                                <i class="fas fa-filter "></i>
+                            </button>
+                            <!-- Filter Dropdown Menu -->
+                            <ul class="dropdown-menu filter-dropdown p-2" aria-labelledby="filterDropdown">
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-movies" checked>
+                                        <label for="filter-movies">Movies</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-tv" checked>
+                                        <label for="filter-tv">Web Series</label>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider bg-secondary"></li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-action">
+                                        <label for="filter-action">Action</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-comedy">
+                                        <label for="filter-comedy">Comedy</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-drama">
+                                        <label for="filter-drama">Drama</label>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider bg-secondary"></li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-hd">
+                                        <label for="filter-hd">HD Only</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Search Input -->
+                        <input type="text" class="search-input" placeholder="Search here what you need..." aria-label="Search">
+                        
+                        <!-- Search Button (Right Side) -->
+                        <button class="search-btn ms-auto d-flex py-3 align-items-center">
+                            <i class="fas fa-search "></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- search bar end here  -->
+
+
    <!-- Movie Section start-->
     <section class="movie" id="allContentSection">
         <div class="container mt-5">
             <!-- Latest Movies Section -->
             <div class="movie-section">
-                <h1 class="m-auto text-center p-2 fw-bold my-5  w-100"><span class="border-start border-end border-danger border-3 px-2">All Contents</span></h1>
+                <h2 class=" text-center p-2 fw-bold my-5 "><span class="border-start border-end border-danger border-3 px-3">All Contents</span></h2>
                 <div class="row ">
                     <!-- Movie Card 1 -->
                     <div class="col-md-2 col-6">
@@ -436,103 +486,7 @@
                             </div>
                         </a>
                     </div>
-                    
-                    <!-- Movie Card 13 -->
-                    <div class="col-md-2 col-6">
-                        <a href="#">
-                            <div class="movie-card">
-                                <img src="img/poster/monkeyMan.jpg" alt="monkeyMan">
-                                <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">7.0</span></div>
-                                <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                    <h5 class="card-title">MONKEY MAN (2024)</h5>
-                                    <p class="card-text">Dual Audio</p>
-                                    <span class="badge mb-2">HD</span>
-                                    <span class="badge">Action/Thriller</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Movie Card 14 -->
-                    <div class="col-md-2 col-6">
-                        <a href="#">
-                            <div class="movie-card">
-                                <img src="img/poster/oppenheimer.jpg" alt="oppenheimer">
-                                <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.3</span></div>
-                                <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                    <h5 class="card-title">Oppenheimer (2023)</h5>
-                                    <p class="card-text">Dual Audio</p>
-                                    <span class="badge mb-2">HD</span>
-                                    <span class="badge">Thriller</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Movie Card 15 -->
-                    <div class="col-md-2 col-6">
-                        <a href="#">
-                            <div class="movie-card">
-                                <img src="img/poster/spiderMan.jpg" alt="spiderMan">
-                                <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.9</span></div>
-                                <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                    <h5 class="card-title">SPIDER MAN</h5>
-                                    <p class="card-text">Dual Audio</p>
-                                    <span class="badge mb-2">HD</span>
-                                    <span class="badge">Action</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Movie Card 16 -->
-                    <div class="col-md-2 col-6">
-                        <a href="#">
-                            <div class="movie-card">
-                                <img src="img/poster/squidGames.jpg" alt="squidGames">
-                                <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.0</span></div>
-                                <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                    <h5 class="card-title">Squid Game</h5>
-                                    <p class="card-text">Dual Audio</p>
-                                    <span class="badge mb-2">HD</span>
-                                    <span class="badge">Thriller</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Movie Card 17 -->
-                    <div class="col-md-2 col-6">
-                        <a href="#">
-                            <div class="movie-card">
-                                <img src="img/poster/titanic.jpg" alt="titanic">
-                                <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.9</span></div>
-                                <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                    <h5 class="card-title">Titanic</h5>
-                                    <p class="card-text">Dual Audio</p>
-                                    <span class="badge mb-2">HD</span>
-                                    <span class="badge">Romance/Advanture</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Movie Card 18 -->
-                    <div class="col-md-2 col-6">
-                        <a href="#">
-                            <div class="movie-card">
-                                <img src="img/poster/wonderWoman.jpg" alt="wonderWoman">
-                                <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.4</span></div>
-                                <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                    <h5 class="card-title">Wonder Woman (2017)</h5>
-                                    <p class="card-text">Dual Audio</p>
-                                    <span class="badge mb-2">HD</span>
-                                    <span class="badge">Action/Advanture</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
+
                 <div>
             <div>
         </div>

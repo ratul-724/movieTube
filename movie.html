@@ -12,10 +12,10 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="fullNavBar navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="fullNavBar navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container d-flex justify-content-between">
             <!-- Logo -->
-            <a class="navbar-brand" href="#"><img src="img/logo.png" width="140px" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="140px" alt=""></a>
 
             <!-- Navbar Links - Hidden on mobile -->
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -49,36 +49,12 @@
             <div class="d-flex">
                 <!-- Search and User Section -->
                 <div class="d-flex align-items-center">
-                    <!-- Search Dropdown -->
-                    <div class="dropdown me-4">
-                        <a class="nav-link fs-4" href="#" id="searchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-search text-white"></i>
-                        </a>
-                        <div class="dropdownMenu searchDropDown dropdown-menu dropdown-menu-lg-end me-lg-0 me-5 p-1 rounded-5 border-primary" aria-labelledby="searchDropdown" style="width: 250px; background-color: rgba(234, 237, 236, 0.854); ">
-                            <form class="w-100 position-relative rounded-5" >
-                                <div class="input-group rounded-5">
-    
-                                    <input class="form-control input m-0 p-1 rounded-5 pe-3 border-0" 
-                                    type="search" id="search-input"
-                                    placeholder="Search movies..." 
-                                    aria-label="Search" name="search" style=" background-color: rgba(0, 0, 0, 0);">
-    
-                                    <div class="searchAllBtns d-flex align-items-center">
-                                        <button id="clear-btn" class="btn position-absolute end-0 p-0" type="button" style="display: none; margin-right: 43px; z-index: 5;">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-    
-                                        <button class="btn search-btn btn-danger rounded-5 " type="submit" name="search">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-    
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-        
-                    <!-- User Dropdown -->
+                    <!-- Search  -->
+                    <a class="nav-link mx-3" href="#searchSection" >
+                        <i class="fas fa-search text-white fs-3" style="font-size: 1.5rem;"></i>
+                    </a>
+
+                    <!-- User  -->
                     <div class="">
                         <a class="nav-link" href="user.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user-circle text-white fs-3" style="font-size: 1.5rem;"></i>
@@ -134,15 +110,249 @@
      
 <div class="overlay">
 <main>
-    <div class="movieBanner "></div>
+     <!-- Trending Movie Section start-->
+    <section class="trendingMovieSlider">
+        <div class="container-fluid position-relative">
+            <h2 class="text-white mb-4 ps-3 text-center"><span class="border-start border-3 px-3 border-danger border-end border-danger">Trending Now</span></h2>
+            
+            <!-- Custom Movie Slider -->
+            <div class="movie-slider-container">
+                <div class="movie-slider-track" id="movieSliderTrack">
+                    <!-- Movie 1 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg" alt="Dune: Part Two" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Dune: Part Two</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 8.7</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 2 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Godzilla x Kong" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Godzilla x Kong</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 7.2</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 3 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/4MCKNAc6AbWjEsM2h9Xc29owo4z.jpg" alt="The Fall Guy" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>The Fall Guy</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 7.2</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 4 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg" alt="Ghostbusters" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Ghostbusters</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 6.7</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 5 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/ySgY4jBvZ6qchrxKnRoGJgQl0S1.jpg" alt="Kung Fu Panda 4" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Kung Fu Panda 4</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 6.9</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 6 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg" alt="Civil War" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Civil War</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 7.4</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 7 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/8ZbybiGYe8XM4WGmGlhF0ec5R7u.jpg" alt="Kingdom of the Planet of the Apes" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Kingdom of the Apes</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 7.1</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 8 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/5cCfqeUH2f5Gnu7LhV1szLmMZ3o.jpg" alt="Furiosa" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Furiosa</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 7.5</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 9 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg" alt="Inside Out 2" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Inside Out 2</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 8.1</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Movie 10 -->
+                    <div class="movie-slide">
+                        <a href="movie-detail.html" class="movie-card landscape">
+                            <img src="https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg" alt="Deadpool & Wolverine" class="img-fluid">
+                            <div class="movie-info">
+                                <h6>Deadpool & Wolverine</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-warning"><i class="fas fa-star"></i> 8.9</span>
+                                    <span class="text-white-50">2024</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="slider-nav prev" id="sliderPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav next" id="sliderNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+     <!-- Trending Movie Section end-->
 
-   <!-- Movie Section start-->
-    <section class="movie mt-5 position-relative" id="allContentSection">
+
+    <!-- search bar start here  -->
+    <div class=" pt-1"  id="searchSection">
+        <section class="container-fluid my-5 pt-4 px-4 px-lg-5 " >
+            <h2 class="text-center mb-4"><span  class="px-3 border-3 border-danger border-start border-end"> Search Here...</span></h2>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10 col-xl-8">
+                    <div class="search-container d-flex align-items-center">
+                        <!-- Filter Button (Left Side) -->
+                        <div class="dropdown">
+                            <button class="filter-btn d-flex align-items-center py-3 me-2 dropdown-toggle" 
+                                    type="button" 
+                                    id="filterDropdown" 
+                                    data-bs-toggle="dropdown" 
+                                    aria-expanded="false">
+                                <i class="fas fa-filter "></i>
+                            </button>
+                            <!-- Filter Dropdown Menu -->
+                            <ul class="dropdown-menu filter-dropdown p-2" aria-labelledby="filterDropdown">
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-movies" checked>
+                                        <label for="filter-movies">Movies</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-tv" checked>
+                                        <label for="filter-tv">Web Series</label>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider bg-secondary"></li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-action">
+                                        <label for="filter-action">Action</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-comedy">
+                                        <label for="filter-comedy">Comedy</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-drama">
+                                        <label for="filter-drama">Drama</label>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider bg-secondary"></li>
+                                <li>
+                                    <div class="filter-option">
+                                        <input type="checkbox" id="filter-hd">
+                                        <label for="filter-hd">HD Only</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Search Input -->
+                        <input type="text" class="search-input" placeholder="Search here what you need..." aria-label="Search">
+                        
+                        <!-- Search Button (Right Side) -->
+                        <button class="search-btn ms-auto d-flex py-3 align-items-center">
+                            <i class="fas fa-search "></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- search bar end here  -->
+
+
+     <!-- Movie Section start-->
+     <section class="movie" id="allContentSection">
         <div class="container mt-5">
             <!-- Latest Movies Section -->
             <div class="movie-section">
-                <h1 class="m-auto text-center p-2 fw-bold my-5  w-100"><span class="border-start border-end border-danger border-3 px-2">All Contents</span></h1>
-                <div class="row " style="--bs-gutter-x: 10px;">
+                <h2 class=" text-center p-2 fw-bold my-5 "><span class="border-start border-end border-danger border-3 px-3">All Contents</span></h2>
+                <div class="row ">
                     <!-- Movie Card 1 -->
                     <div class="col-md-2 col-6">
                         <a href="#">
@@ -432,7 +642,6 @@
         </div>
     </section>
     <!-- Movie Section end-->
-
     <!-- footer section start  -->
     <footer class="footer bg-dark text-white pt-5 pb-4 mt-5">
         <div class="container">
@@ -511,7 +720,7 @@
     <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/movie.js"></script>
     <script src="js/common.js"></script>
 </body>
 </html>
