@@ -102,8 +102,6 @@ body {
     }
 }
 /* Adjust the navbar toggler for mobile */
-
-
 /* Navbar end*/
 
 
@@ -221,36 +219,37 @@ body {
 
 /* back to top button code start  */
 .back-to-top-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #e50914;
-  color: white;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.3s ease-in-out;
-  z-index: 999;
+position: fixed;
+bottom: 25px;
+right: 25px;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: #c40812;
+color: white;
+border: none;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 20px;
+opacity: 0;
+transition: all 0.3s ease;
+z-index: 999;
 }
-.back-to-top-btn.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+/* Animation for the button */
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
 }
-.back-to-top-btn i {
-  transition: transform 0.3s ease;
+40% {
+    transform: translateY(-10px);
+}
+60% {
+    transform: translateY(-5px);
+}
 }
 .back-to-top-btn:hover i {
-  transform: translateY(-3px);
+animation: bounce 1s;
 }
 /* back to top button code end  */

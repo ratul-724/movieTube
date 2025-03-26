@@ -15,43 +15,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     closeDrawerBtn.addEventListener('click', closeDrawer);
 });
-
-// Toggle Search Bar
-function toggleSearch() {
-    const searchBar = document.getElementById('searchBar');
-    if (searchBar.style.display === 'none' || searchBar.style.display === '') {
-        searchBar.style.display = 'block';
-    } else {
-        searchBar.style.display = 'none';
-    }
-}
-
-const searchInput = document.getElementById('search-input');
-const clearBtn = document.getElementById('clear-btn');
-// Show clear button when typing
-searchInput.addEventListener('input', function() {
-    clearBtn.style.display = this.value ? 'block' : 'none';
-});
-// Clear input when X is clicked
-clearBtn.addEventListener('click', function() {
-    searchInput.value = '';
-    clearBtn.style.display = 'none';
-    searchInput.focus();
-});
 // code for nav bar end
 
 // back to top button code start 
 document.addEventListener('DOMContentLoaded', function() {
   const backToTopButton = document.getElementById('backToTop');
-  // Show button when scrolling down
+  
+  // Show/hide button based on scroll position
   window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.add('show');
+    if (window.pageYOffset > 200) {
+      backToTopButton.style.visibility = 'visible'; 
+      backToTopButton.style.opacity = '1'; 
+      backToTopButton.style.transform = 'translateY(0)'; 
     } else {
-      backToTopButton.classList.remove('show');
+      backToTopButton.style.visibility = 'hidden'; 
+      backToTopButton.style.opacity = '0'; 
+      backToTopButton.style.transform = 'translateY(20px)'; 
+
     }
   });
-  // Smooth scroll to top
+  
+  // Smooth scroll to top when clicked
   backToTopButton.addEventListener('click', function(e) {
     e.preventDefault();
     window.scrollTo({
@@ -61,6 +45,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 // back to top button code end 
-
-
-
