@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Tube</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/requestMovie.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="fullNavBar navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container d-flex justify-content-between">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="140px" alt=""></a>
+
+            <!-- Navbar Links - Hidden on mobile -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item px-1 ">
+                        <a class="nav-link p-4 active" href="index.html">Home</a>
+                    </li>
+                    <!-- Categories Dropdown -->
+                    <li class="nav-item px-1 dropdown">
+                        <a class="nav-link p-4  dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu bg-black " aria-labelledby="categoriesDropdown">
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Action</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Animation</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Comedy</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Drama</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Horror</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Romance</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="nav-link p-4" href="requestMovie.html">Request Movie</a>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="nav-link p-4" href="myList.html">My List</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="d-flex">
+                <!-- Search and User Section -->
+                <div class="d-flex align-items-center">
+                    <!-- Search  -->
+                    <a class="nav-link mx-3" href="movie.html" >
+                        <i class="fas fa-search text-white fs-3" style="font-size: 1.5rem;"></i>
+                    </a>
+        
+                    <!-- User  -->
+                    <div>
+                        <a class="nav-link" href="user.html" >
+                            <i class="fas fa-user-circle text-white fs-3" style="font-size: 1.5rem;"></i>
+                        </a>
+                    </div>
+                </div>
+                   
+            <!-- Mobile Menu Button Only shows on mobile view-->
+            <button class="navbar-toggler d-lg-none mobile-menu-btn ms-2 input border-0" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+    
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer">
+
+        <div class="drawer-header d-flex justify-content-between align-items-center p-3 bg-dark">
+            <h5 class="text-white m-0">Menu</h5>
+            <button class="close-drawer btn text-white fs-4 input border-0"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="drawer-content p-3 bg-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item border-bottom border-white">
+                    <a class="nav-link py-3 active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown border-bottom border-white">
+                    <a class="nav-link  py-3 dropdown-toggle" href="#" id="mobileCategoriesDropdown" role="button" data-bs-toggle="dropdown">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu bg-black " aria-labelledby="categoriesDropdown">
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Action</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Animation</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Comedy</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Drama</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Horror</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Romance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item border-bottom border-white">
+                    <a class="nav-link  py-3" href="requestMovie.html">Request Movie</a>
+                </li>
+                <li class="nav-item border-bottom border-white">
+                    <a class="nav-link  py-3" href="myList.html">My List</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Navbar -->
+
+<div class="overlay">
+<main class="position-relative">
+        <!-- Header Section -->
+        <header class="request-header">
+            <div class="container-request header-content text-center">
+                <h1 class="page-title animate-fade">Request Movies</h1>
+                <p class="page-subtitle animate-fade" style="animation-delay: 0.2s;">
+                    Can't find what you're looking for? Request any movie or TV show and our team will work to add it to our collection within 24-48 hours.
+                </p>
+            </div>
+        </header>
+    
+        <!-- Main Content -->
+        <main class="container-request">
+            <!-- Request Form -->
+            <div class="request-card animate-fade" style="animation-delay: 0.4s;">
+                <h2 class="section-title">Make a Request</h2>
+                
+                <form id="movieRequestForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="movieName" class="form-label">Movie/TV Show Name*</label>
+                            <input type="text" class="form-control" id="movieName" required placeholder="e.g. Inception, Stranger Things">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="releaseYear" class="form-label">Release Year</label>
+                            <input type="number" class="form-control" id="releaseYear" placeholder="e.g. 2020" min="1900" max="2030">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="movieType" class="form-label">Type*</label>
+                            <select class="form-select" id="movieType" required>
+                                <option value="">Select type</option>
+                                <option value="movie">Movie</option>
+                                <option value="tv-show">TV Show</option>
+                                <option value="anime">Anime</option>
+                                <option value="documentary">Documentary</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label">Quality Preference</label>
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="quality-480p" value="480p">
+                                    <label class="form-check-label" for="quality-480p">480p</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="quality-720p" value="720p" checked>
+                                    <label class="form-check-label" for="quality-720p">720p HD</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="quality-1080p" value="1080p" checked>
+                                    <label class="form-check-label" for="quality-1080p">1080p FHD</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="quality-4k" value="4k">
+                                    <label class="form-check-label" for="quality-4k">4K UHD</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="additionalNotes" class="form-label">Additional Notes</label>
+                        <textarea class="form-control" id="additionalNotes" rows="3" placeholder="Specific version, preferred language, special edition, etc."></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="userEmail" class="form-label">Your Email (Optional)</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="We'll notify you when it's available">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="userName" class="form-label">Your Name (Optional)</label>
+                            <input type="text" class="form-control" id="userName" placeholder="How should we address you?">
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div class="form-text text-muted">
+                            <i class="fas fa-info-circle me-2"></i> We typically fulfill requests within 24-48 hours
+                        </div>
+                        <button type="submit" class="btn-request">
+                            <i class="fas fa-paper-plane"></i> Submit Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Recent Requests -->
+            <div class="request-card animate-fade" style="animation-delay: 0.6s;">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="section-title">Recently Fulfilled</h2>
+                    <a href="#" class="btn btn-outline-danger btn-sm">View All Requests</a>
+                </div>
+                
+                <div class="requests-list">
+                    <div class="request-item">
+                        <div class="request-info">
+                            <div class="request-title">Dune: Part Two (2024)</div>
+                            <div class="request-meta">Requested by: Alex • 2 days ago</div>
+                        </div>
+                        <span class="request-status status-added">Added</span>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-info">
+                            <div class="request-title">Shōgun (2024) Season 1</div>
+                            <div class="request-meta">Requested by: Sarah • 5 days ago</div>
+                        </div>
+                        <span class="request-status status-added">Added</span>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-info">
+                            <div class="request-title">Kingdom of the Planet of the Apes (2024)</div>
+                            <div class="request-meta">Requested by: Mike • 1 week ago</div>
+                        </div>
+                        <span class="request-status status-processing">Processing</span>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-info">
+                            <div class="request-title">The Fall Guy (2024)</div>
+                            <div class="request-meta">Requested by: Jessica • 1 week ago</div>
+                        </div>
+                        <span class="request-status status-processing">Processing</span>
+                    </div>
+                    
+                    <div class="request-item">
+                        <div class="request-info">
+                            <div class="request-title">Godzilla x Kong: The New Empire (2024)</div>
+                            <div class="request-meta">Requested by: David • 2 weeks ago</div>
+                        </div>
+                        <span class="request-status status-added">Added</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    <!-- footer section start  -->
+    <footer class="footer bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <!-- Website Info -->
+                <div class="col-md-4 mb-4">
+                    <a class="navbar-brand d-block mb-3" href="index.html">
+                        <img src="img/logo.png" width="160" alt="MovieFlix">
+                    </a>
+                    <p class="text-secondary">Download and Watch your favorite movies in HD quality. Fast downloads, no ads, and unlimited access to our massive library.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-reddit-alien"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-2 col-6 mb-4">
+                    <h5 class="text-danger mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Trending</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">New Releases</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Request Movie</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Categories -->
+                <div class="col-md-2 col-6 mb-4">
+                    <h5 class="text-danger mb-4">Categories</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Action</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Comedy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Horror</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Romance</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Advanture</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Sci-Fi</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-danger mb-4">Legal</h5>
+                    <p class="text-secondary small">This website does not host any files on its server. All contents are provided by non-affiliated third parties.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-secondary mb-0">&copy; 2025 MovieTube. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-secondary mb-0">Made with <i class="fas fa-heart text-danger"></i> for movie lovers</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section end  -->
+</main>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="back-to-top-btn" aria-label="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</div>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/common.js"></script>
+</body>
+</html>

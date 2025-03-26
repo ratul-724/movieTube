@@ -81,8 +81,30 @@
     font-size: 0.75rem;
     margin-right: 5px;
 }
+/* for favorite button code start here  */
+.favorite-btn {
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    z-index: 3;
+}
+.favorite-btn:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+.favorite-btn.active {
+    opacity: 1;
+}
+.favorite-btn.active i {
+    color: #e50914 !important;
+    font-weight: 900;
+}
+.movie-card:hover .favorite-btn {
+    opacity: 1;
+}
+/* for favorite button code end here  */
 /* movie section end */
 
+/* responsive code from here  */
 @media (max-width: 768px) {
     .heroSection{
         flex-direction: column-reverse;

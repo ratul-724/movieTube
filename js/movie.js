@@ -123,3 +123,44 @@ document.querySelectorAll('.filter-option').forEach(option => {
         }
     });
 });
+
+
+
+
+// Favorite button functionality start
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize from localStorage
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        const movieId = btn.closest('.movie-card').querySelector('img').alt;
+        if (localStorage.getItem(`fav_${movieId}`)) {
+            btn.classList.add('active');
+            btn.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+        }
+    });
+
+    // Add click handlers
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const icon = this.querySelector('i');
+            const movieId = this.closest('.movie-card').querySelector('img').alt;
+            
+            if (this.classList.contains('active')) {
+                // Remove from favorites
+                this.classList.remove('active');
+                icon.classList.replace('fa-solid', 'fa-regular');
+                localStorage.removeItem(`fav_${movieId}`);
+                console.log('Removed from favorites:', movieId);
+            } else {
+                // Add to favorites
+                this.classList.add('active');
+                icon.classList.replace('fa-regular', 'fa-solid');
+                localStorage.setItem(`fav_${movieId}`, 'true');
+                console.log('Added to favorites:', movieId);
+            }
+        });
+    });
+});
+// Favorite button functionality end

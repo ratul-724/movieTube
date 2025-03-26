@@ -1,0 +1,183 @@
+
+:root {
+    --primary-red: #e50914;
+    --primary-dark: #0f0f0f;
+    --secondary-dark: #1a1a1a;
+    --accent-dark: #2a2a2a;
+    --text-light: #ffffff;
+    --text-muted: #b3b3b3;
+}
+
+body {
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styles */
+.account-header {
+    background: linear-gradient(135deg, #000000 0%, #200000 100%);
+    padding: 3rem 0;
+    border-bottom: 3px solid var(--primary-red);
+    margin-bottom: 2rem;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-red);
+    object-fit: cover;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    background-color: var(--secondary-dark);
+    border-radius: 8px;
+    padding: 0;
+    height: 100%;
+}
+
+.sidebar .nav-link {
+    color: var(--text-muted);
+    padding: 12px 20px;
+    border-left: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    color: var(--text-light);
+    background-color: rgba(229, 9, 20, 0.1);
+    border-left-color: var(--primary-red);
+}
+
+.sidebar .nav-link i {
+    width: 24px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+/* Content Cards */
+.content-card {
+    background-color: var(--secondary-dark);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.content-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+    color: var(--primary-red);
+    border-bottom: 2px solid var(--primary-red);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Download Items */
+.download-item {
+    border-left: 3px solid var(--primary-red);
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(40, 40, 40, 0.7);
+    transition: all 0.3s;
+}
+
+.download-item:hover {
+    background-color: rgba(60, 60, 60, 0.7);
+}
+
+.progress {
+    height: 6px;
+    background-color: #333;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    background-color: var(--primary-red);
+}
+
+/* Movie Cards */
+.movie-card-sm {
+    display: flex;
+    margin-bottom: 15px;
+    background-color: rgba(40, 40, 40, 0.7);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.movie-card-sm img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.movie-card-sm .movie-info {
+    padding: 10px;
+    flex: 1;
+}
+
+.movie-card-sm .movie-title {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-card-sm .movie-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.status-completed {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.status-downloading {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.status-failed {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+/* User Info */
+.info-item {
+    margin-bottom: 15px;
+}
+
+.info-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Tube</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/movie-detail.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="fullNavBar navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container d-flex justify-content-between">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="140px" alt=""></a>
+
+            <!-- Navbar Links - Hidden on mobile -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item px-1 ">
+                        <a class="nav-link p-4 active" href="index.html">Home</a>
+                    </li>
+                    <!-- Categories Dropdown -->
+                    <li class="nav-item px-1 dropdown">
+                        <a class="nav-link p-4  dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu bg-black " aria-labelledby="categoriesDropdown">
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Action</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Animation</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Comedy</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Drama</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Horror</a></li>
+                            <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Romance</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="nav-link p-4" href="requestMovie.html">Request Movie</a>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="nav-link p-4" href="myList.html">My List</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="d-flex">
+                <!-- Search and User Section -->
+                <div class="d-flex align-items-center">
+                    <!-- Search  -->
+                    <a class="nav-link mx-3" href="movie.html" >
+                        <i class="fas fa-search text-white fs-3" style="font-size: 1.5rem;"></i>
+                    </a>
+        
+                    <!-- User  -->
+                    <div>
+                        <a class="nav-link" href="user.html" >
+                            <i class="fas fa-user-circle text-white fs-3" style="font-size: 1.5rem;"></i>
+                        </a>
+                    </div>
+                </div>
+                   
+            <!-- Mobile Menu Button Only shows on mobile view-->
+            <button class="navbar-toggler d-lg-none mobile-menu-btn ms-2 input border-0" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+    
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer">
+
+        <div class="drawer-header d-flex justify-content-between align-items-center p-3 bg-dark">
+            <h5 class="text-white m-0">Menu</h5>
+            <button class="close-drawer btn text-white fs-4 input border-0"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="drawer-content p-3 bg-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item border-bottom border-white">
+                    <a class="nav-link py-3 active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown border-bottom border-white">
+                    <a class="nav-link  py-3 dropdown-toggle" href="#" id="mobileCategoriesDropdown" role="button" data-bs-toggle="dropdown">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu bg-black " aria-labelledby="categoriesDropdown">
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Action</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Animation</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Comedy</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Drama</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Horror</a></li>
+                        <li><a class="dropdown-item text-white dropdownMenuItems" href="movie.html">Romance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item border-bottom border-white">
+                    <a class="nav-link  py-3" href="requestMovie.html">Request Movie</a>
+                </li>
+                <li class="nav-item border-bottom border-white">
+                    <a class="nav-link  py-3" href="myList.html">My List</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Navbar -->
+
+<div class="overlay">
+<main class="position-relative">
+
+        <!-- Movie Header -->
+        <div class="movie-header">
+            <div class="container movie-header-content">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <img src="img/poster/animal.jpg" alt="Ne Zha Poster" class="img-fluid movie-poster">
+                    </div>
+                    <div class="col-md-8 mt-4 mt-md-0">
+                        <h1 class="movie-title">Animal (2023) <span class="quality-badge">HD</span></h1>
+                        <p class="movie-meta">[ENG ORG Dub] WEB-DL 720p & 1080p | GDrive | ESub • Jul 26, 2023 • India • 1080p Full HD</p>
+                        
+                        <div class="mt-3">
+                            <span class="genre-badge">Action</span>
+                            <span class="genre-badge">Thriller</span>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button class="btn-download">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="btn-download">
+                                <i class="fa-solid fa-circle-play"></i> Watch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="container py-4">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Synopsis Section -->
+                    <div class="info-card">
+                        <h3 class="section-title">Synopsis</h3>
+                        <p>Animal is a 2023 Indian Hindi-language action drama film co-written, directed and edited by Sandeep Reddy Vanga and produced by T-Series Films, Bhadrakali Pictures and Cine1 Studios. The film stars Ranbir Kapoor, Anil Kapoor, Bobby Deol, Rashmika Mandanna and Triptii Dimri. The film follows Ranvijay "Vijay" Singh, a cold-blooded son of a powerful industrialist, and his troubled relationship with his father, which gets further jeopardized as he sets out on a path of vengeance and destruction after an assassination attempt on his father. </p>
+                    </div>
+                    
+                    <!-- Download Section -->
+                    <div class="info-card">
+                        <h3 class="section-title">Download Links</h3>
+                        
+                        <div class="file-info">
+                            <div><i class="fas fa-info-circle"></i> <strong>File Information:</strong></div>
+                            <div class="ms-4 mt-2">
+                                <div><i class="fas fa-film"></i> Format: WEB-DL</div>
+                                <div><i class="fas fa-expand"></i> Resolution: 720p | 1080p</div>
+                                <div><i class="fas fa-language"></i> Language: Hindi</div>
+                                <div><i class="fas fa-closed-captioning"></i> Subtitles: English (Embedded)</div>
+                                <div><i class="fas fa-database"></i> Size: 1.2GB | 2.5GB</div>
+                            </div>
+                        </div>
+                        
+                        <h5 class="text-white mt-4 mb-3">Choose Your Download Option:</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <button class="btn-download w-100">
+                                    <i class="fas fa-cloud-download-alt"></i> Google Drive
+                                </button>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <button class="btn-download w-100">
+                                    <i class="fas fa-server"></i> Direct Download
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-dark mt-3">
+                            <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                            Use VPN if downloads are blocked in your country
+                        </div>
+                    </div>
+                    
+                    <!-- User Reviews -->
+                    <div class="info-card">
+                        <h3 class="section-title">User Reviews</h3>
+                        
+                        <div class="review-card">
+                            <div class="d-flex">
+                                <img src="https://via.placeholder.com/50" alt="User" class="user-avatar">
+                                <div>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span class="ms-2">4.5/5</span>
+                                    </div>
+                                    <h6 class="mb-1">MovieFan123</h6>
+                                    <p class="small text-muted">Reviewed on March 15, 2024</p>
+                                    <p>Amazing animation and story! One of the best Chinese animated films I've seen. The character development is superb.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="d-flex">
+                                <img src="https://via.placeholder.com/50" alt="User" class="user-avatar">
+                                <div>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="ms-2">4/5</span>
+                                    </div>
+                                    <h6 class="mb-1">CinemaLover</h6>
+                                    <p class="small text-muted">Reviewed on February 28, 2024</p>
+                                    <p>Great film with stunning visuals. The English dub is decent but I recommend watching with original audio and subtitles.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <form class="mt-4">
+                            <h5 class="text-white mb-3">Write Your Review</h5>
+                            <div class="mb-3">
+                                <select class="form-select bg-dark text-white border-secondary">
+                                    <option>Select Rating</option>
+                                    <option>5 Stars</option>
+                                    <option>4 Stars</option>
+                                    <option>3 Stars</option>
+                                    <option>2 Stars</option>
+                                    <option>1 Star</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Your review..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-danger">Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Share Section -->
+                    <div class="info-card">
+                        <h3 class="section-title">Share This Movie</h3>
+                        <div class="d-flex flex-wrap">
+                            <button class="share-btn facebook">
+                                <i class="fab fa-facebook-f me-2"></i>Facebook
+                            </button>
+                            <button class="share-btn twitter">
+                                <i class="fab fa-twitter me-2"></i>Twitter
+                            </button>
+                            <button class="share-btn whatsapp">
+                                <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                            </button>
+                            <button class="share-btn telegram">
+                                <i class="fab fa-telegram-plane me-2"></i>Telegram
+                            </button>
+                            <button class="share-btn" style="background-color: var(--dark-secondary);">
+                                <i class="fas fa-link me-2"></i>Copy Link
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Trending Movies -->
+                    <div class="info-card">
+                        <h3 class="section-title">Trending Now</h3>
+                        
+                        <div class="trending-movie">
+                            <img src="https://via.placeholder.com/200x300" alt="Trending Movie" class="trending-poster">
+                            <h6>Demon Slayer: Mugen Train (2021)</h6>
+                            <div class="rating-stars small">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="ms-2">4.7/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="trending-movie">
+                            <img src="https://via.placeholder.com/200x300" alt="Trending Movie" class="trending-poster">
+                            <h6>Spider-Man: Across the Spider-Verse (2023)</h6>
+                            <div class="rating-stars small">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="ms-2">5/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="trending-movie">
+                            <img src="https://via.placeholder.com/200x300" alt="Trending Movie" class="trending-poster">
+                            <h6>The Batman (2022)</h6>
+                            <div class="rating-stars small">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="ms-2">4/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Details -->
+                    <div class="info-card">
+                        <h3 class="section-title">Movie Details</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><strong>Director:</strong> Yu Yang (Jiaozi)</li>
+                            <li class="mb-2"><strong>Writers:</strong> Yu Yang, Wei Yunyun</li>
+                            <li class="mb-2"><strong>Stars:</strong> Lü Yanting, Joseph, Han Mo</li>
+                            <li class="mb-2"><strong>Runtime:</strong> 110 min</li>
+                            <li class="mb-2"><strong>Country:</strong> China</li>
+                            <li class="mb-2"><strong>Language:</strong> Mandarin (English Dubbed)</li>
+                            <li class="mb-2"><strong>Budget:</strong> $20 million</li>
+                            <li class="mb-2"><strong>Box Office:</strong> $726 million</li>
+                            <li class="mb-2"><strong>IMDb:</strong> 7.4/10</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- footer section start  -->
+    <footer class="footer bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <!-- Website Info -->
+                <div class="col-md-4 mb-4">
+                    <a class="navbar-brand d-block mb-3" href="index.html">
+                        <img src="img/logo.png" width="160" alt="MovieFlix">
+                    </a>
+                    <p class="text-secondary">Download and Watch your favorite movies in HD quality. Fast downloads, no ads, and unlimited access to our massive library.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white text-decoration-none me-3"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-reddit-alien"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-2 col-6 mb-4">
+                    <h5 class="text-danger mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Trending</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">New Releases</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Request Movie</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Categories -->
+                <div class="col-md-2 col-6 mb-4">
+                    <h5 class="text-danger mb-4">Categories</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Action</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Comedy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Horror</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Romance</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Advanture</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Sci-Fi</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-danger mb-4">Legal</h5>
+                    <p class="text-secondary small">This website does not host any files on its server. All contents are provided by non-affiliated third parties.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-secondary mb-0">&copy; 2025 MovieTube. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-secondary mb-0">Made with <i class="fas fa-heart text-danger"></i> for movie lovers</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section end  -->
+</main>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="back-to-top-btn" aria-label="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</div>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/common.js"></script>
+</body>
+</html>

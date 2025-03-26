@@ -30,3 +30,25 @@ counters.forEach(counter => {
     observer.observe(counter);
 });
 });
+
+// for favorite button code satrt here 
+// Favorite button functionality
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.classList.toggle('active');
+        const icon = this.querySelector('i');
+        
+        if (this.classList.contains('active')) {
+            icon.classList.replace('fa-regular', 'fa-solid');
+            // Here you would add to favorites (AJAX call to your backend)
+            console.log('Added to favorites');
+        } else {
+            icon.classList.replace('fa-solid', 'fa-regular');
+            // Here you would remove from favorites
+            console.log('Removed from favorites');
+        }
+    });
+});
+// for favorite button code end here 
