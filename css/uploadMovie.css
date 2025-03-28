@@ -1,0 +1,206 @@
+/* Base Styles */
+.upload-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #1a1a1a;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  .upload-container h1 {
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  
+  /* Progress Bar */
+  .upload-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .upload-progress::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #333;
+    z-index: 1;
+  }
+  
+  .step {
+    padding: 0.5rem 1rem;
+    background: #333;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    min-width: 100px;
+  }
+  
+  .step.active {
+    background: #e50914;
+  }
+  
+  /* Form Sections */
+  .form-section {
+    display: none;
+    padding: 1.5rem 0;
+  }
+  
+  .form-section.active {
+    display: block;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="url"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.75rem;
+    background: #333;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+  }
+  
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  /* File Upload */
+  .file-upload-box {
+    border: 2px dashed #444;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .file-upload-box:hover {
+    border-color: #e50914;
+  }
+  
+  .file-upload-label {
+    margin-bottom: 1rem;
+  }
+  
+  .file-requirements {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 0.5rem;
+  }
+  
+  .image-preview {
+    margin-top: 1rem;
+    max-width: 200px;
+    max-height: 300px;
+    display: none;
+  }
+  
+  .image-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  /* Genre Selector */
+  .genre-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .genre-option {
+    background: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+  }
+  
+  .genre-option input {
+    margin-right: 0.5rem;
+  }
+  
+  /* Form Actions */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  
+  .prev-btn {
+    background: #333;
+    color: #fff;
+  }
+  
+  .next-btn, .submit-btn {
+    background: #e50914;
+    color: #fff;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Review Section */
+  .review-summary {
+    background: #222;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .review-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .review-section h3 {
+    margin-bottom: 0.5rem;
+    color: #e50914;
+  }
+  
+  .review-item {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+  }
+  
+  /* Terms Agreement */
+  #terms-agreement {
+    margin-right: 0.5rem;
+  }
