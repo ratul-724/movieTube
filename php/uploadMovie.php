@@ -1,162 +1,113 @@
 <?php
 header('Content-Type: application/json');
 
-// Error reporting
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/upload_errors.log');
-
-// Database config
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'Movie-Tube');
-
-$response = [
-    'success' => false,
-    'message' => '',
-    'debug' => []
+// Database configuration
+$config = [
+    'servername' => "localhost",
+    'username' => "root",
+    'password' => "",
+    'dbname' => "movie-tube"
 ];
 
-function cleanInput($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+$response = ['success' => false, 'message' => ''];
+
+// Validate request method
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    $response['message'] = "Invalid request method";
+    echo json_encode($response);
+    exit;
 }
 
 try {
-    // Validate request
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        throw new Exception('Invalid request method');
+    // Create database connection
+    $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+    
+    if ($conn->connect_error) {
+        throw new Exception("Database connection failed: " . $conn->connect_error);
     }
 
-    // Check for empty required fields
-    $required = ['title', 'release_year', 'duration', 'movie_type', 'rating', 'language'];
+    // Validate required fields
+    $required = ['title', 'release_year', 'drive_link', 'poster_link', 'movie_type', 'quality', 'language'];
     foreach ($required as $field) {
         if (empty($_POST[$field])) {
-            throw new Exception("Missing required field: $field");
+            throw new Exception("Missing required field: " . $field);
         }
     }
 
-    // Validate files
-    if (empty($_FILES['movie_file']['tmp_name'])) {
-        throw new Exception('Movie file is required');
+    // Process and sanitize data
+    $title = sanitizeInput($conn, $_POST['title']);
+    $description = sanitizeInput($conn, $_POST['description'] ?? '');
+    $release_year = (int)$_POST['release_year'];
+    
+    // Process duration
+    $hours = isset($_POST['hours']) ? (int)$_POST['hours'] : 0;
+    $minutes = isset($_POST['minutes']) ? (int)$_POST['minutes'] : 0;
+    $duration_formatted = formatDuration($hours, $minutes);
+    $duration_minutes = ($hours * 60) + $minutes;
+    
+    $drive_link = filter_var($_POST['drive_link'], FILTER_SANITIZE_URL);
+    $poster_link = filter_var($_POST['poster_link'], FILTER_SANITIZE_URL);
+    $trailer_link = !empty($_POST['trailer_link']) ? filter_var($_POST['trailer_link'], FILTER_SANITIZE_URL) : null;
+    
+    $movie_type = sanitizeInput($conn, $_POST['movie_type']);
+    $quality = sanitizeInput($conn, $_POST['quality']);
+    
+    // Process genres
+    if (empty($_POST['genres']) || !is_array($_POST['genres'])) {
+        throw new Exception("Please select at least one genre");
     }
-    if (empty($_FILES['poster_image']['tmp_name'])) {
-        throw new Exception('Poster image is required');
-    }
+    $genres = implode(", ", array_map(function($genre) use ($conn) {
+        return sanitizeInput($conn, $genre);
+    }, $_POST['genres']));
+    
+    $directors = sanitizeInput($conn, $_POST['directors'] ?? '');
+    $cast = sanitizeInput($conn, $_POST['cast'] ?? '');
+    $language = sanitizeInput($conn, $_POST['language']);
 
-    // File validation
-    $allowedMovieTypes = ['mp4', 'mkv', 'mov', 'avi'];
-    $allowedImageTypes = ['jpg', 'jpeg', 'png'];
-    $maxFileSize = 5000 * 1024 * 1024; // 5GB
-
-    $movieFile = $_FILES['movie_file'];
-    $posterFile = $_FILES['poster_image'];
-
-    // Validate movie file
-    $movieExt = strtolower(pathinfo($movieFile['name'], PATHINFO_EXTENSION));
-    if (!in_array($movieExt, $allowedMovieTypes)) {
-        throw new Exception('Invalid movie file type');
-    }
-    if ($movieFile['size'] > $maxFileSize) {
-        throw new Exception('Movie file exceeds maximum size');
-    }
-
-    // Validate poster image
-    $imageInfo = getimagesize($posterFile['tmp_name']);
-    if (!$imageInfo) {
-        throw new Exception('Invalid poster image');
-    }
-    $posterExt = strtolower(pathinfo($posterFile['name'], PATHINFO_EXTENSION));
-    if (!in_array($posterExt, $allowedImageTypes)) {
-        throw new Exception('Invalid poster image type');
-    }
-    if ($posterFile['size'] > 10 * 1024 * 1024) { // 10MB
-        throw new Exception('Poster image exceeds maximum size');
-    }
-
-    // Prepare upload directory
-    $uploadDir = __DIR__ . '/../uploads/temp/';
-    if (!file_exists($uploadDir)) {
-        if (!mkdir($uploadDir, 0755, true)) {
-            throw new Exception('Failed to create upload directory');
-        }
-    }
-
-    // Generate unique filenames
-    $movieFilename = 'movie_' . uniqid() . '.' . $movieExt;
-    $posterFilename = 'poster_' . uniqid() . '.' . $posterExt;
-    $moviePath = $uploadDir . $movieFilename;
-    $posterPath = $uploadDir . $posterFilename;
-
-    // Move uploaded files
-    if (!move_uploaded_file($movieFile['tmp_name'], $moviePath)) {
-        throw new Exception('Failed to save movie file');
-    }
-    if (!move_uploaded_file($posterFile['tmp_name'], $posterPath)) {
-        unlink($moviePath); // Clean up movie file if poster fails
-        throw new Exception('Failed to save poster image');
-    }
-
-    // Database connection
-    $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    if ($db->connect_error) {
-        throw new Exception('Database connection failed');
-    }
-
-    // Prepare data
-    $title = $db->real_escape_string(cleanInput($_POST['title']));
-    $description = $db->real_escape_string(cleanInput($_POST['description'] ?? ''));
-    $releaseYear = (int)$_POST['release_year'];
-    $duration = (int)$_POST['duration'];
-    $movieType = $db->real_escape_string(cleanInput($_POST['movie_type']));
-    $rating = $db->real_escape_string(cleanInput($_POST['rating']));
-    $genres = isset($_POST['genres']) ? json_encode($_POST['genres']) : '[]';
-    $directors = $db->real_escape_string(cleanInput($_POST['directors'] ?? ''));
-    $cast = $db->real_escape_string(cleanInput($_POST['cast'] ?? ''));
-    $language = $db->real_escape_string(cleanInput($_POST['language']));
-    $trailerLink = $db->real_escape_string(cleanInput($_POST['trailer_link'] ?? ''));
-    $uploadTime = date('Y-m-d H:i:s');
-
-    // Insert record
-    $query = "INSERT INTO pending_movies (
-        title, description, release_year, duration, 
-        movie_type, rating, genres, directors, cast, 
-        language, trailer_link, movie_file_path, poster_path, 
-        upload_time, status
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')";
-
-    $stmt = $db->prepare($query);
-    if (!$stmt) {
-        throw new Exception('Database prepare failed: ' . $db->error);
-    }
-
+    // Prepare and execute SQL
+    $stmt = $conn->prepare("INSERT INTO `pending_movies` (
+        `title`, `description`, `release_year`, `duration_formatted`, `duration_minutes`,
+        `drive_link`, `poster_link`, `trailer_link`, `movie_type`, `quality`,
+        `genres`, `directors`, `cast`, `language`
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
     $stmt->bind_param(
-        'ssiissssssssss',
-        $title, $description, $releaseYear, $duration,
-        $movieType, $rating, $genres, $directors, $cast,
-        $language, $trailerLink, $movieFilename, $posterFilename,
-        $uploadTime
+        "ssisississssss",
+        $title, $description, $release_year, $duration_formatted, $duration_minutes,
+        $drive_link, $poster_link, $trailer_link, $movie_type, $quality,
+        $genres, $directors, $cast, $language
     );
-
-    if (!$stmt->execute()) {
-        unlink($moviePath);
-        unlink($posterPath);
-        throw new Exception('Database insert failed: ' . $stmt->error);
+    
+    if ($stmt->execute()) {
+        $response['success'] = true;
+        $response['message'] = 'Movie submitted successfully! It will be reviewed soon.';
+    } else {
+        throw new Exception("Database error: " . $stmt->error);
     }
-
-    $response['success'] = true;
-    $response['message'] = 'Movie submitted successfully';
-    $response['debug']['movie_id'] = $stmt->insert_id;
-
+    
     $stmt->close();
-    $db->close();
-
 } catch (Exception $e) {
-    http_response_code(500);
     $response['message'] = $e->getMessage();
-    $response['debug']['error'] = $e->getMessage();
-    $response['debug']['trace'] = $e->getTraceAsString();
+} finally {
+    if (isset($conn)) {
+        $conn->close();
+    }
+    echo json_encode($response);
+    exit;
 }
 
-echo json_encode($response);
+function sanitizeInput($conn, $input) {
+    return $conn->real_escape_string(htmlspecialchars(trim($input)));
+}
+
+function formatDuration($hours, $minutes) {
+    $duration = '';
+    if ($hours > 0) {
+        $duration .= $hours . 'h ';
+    }
+    if ($minutes > 0) {
+        $duration .= $minutes . 'min';
+    }
+    return trim($duration);
+}
 ?>

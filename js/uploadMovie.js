@@ -1,360 +1,201 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-    // Only run on upload page
-    if (!document.getElementById('movieUploadForm')) return;
-    // Add null checks
-    if (!yearSelect || !posterInput) {
-        console.log('Not on upload page - skipping initialization');
-        return;
+$(document).ready(function() {
+    // Populate year dropdown
+    const currentYear = new Date().getFullYear();
+    const yearSelect = $('#release-year');
+    for (let year = currentYear; year >= 1900; year--) {
+        yearSelect.append(`<option value="${year}">${year}</option>`);
     }
 
-  // Configuration
-  const API_ENDPOINT = 'php/uploadMovie.php';
-  const MAX_FILE_SIZE_MB = 5000; // 5GB
-  const ALLOWED_MOVIE_TYPES = ['mp4', 'mkv', 'mov', 'avi'];
-  const ALLOWED_IMAGE_TYPES = ['jpg', 'jpeg', 'png'];
+    // Form navigation
+    let currentStep = 1;
+    const totalSteps = 4;
 
-  // DOM Elements
-  const form = document.getElementById('movieUploadForm');
-  const formSections = document.querySelectorAll('.form-section');
-  const progressSteps = document.querySelectorAll('.step');
-  const yearSelect = document.getElementById('release-year');
-  const posterInput = document.getElementById('poster-image');
-  const posterPreview = document.querySelector('.image-preview');
-  const movieFileInput = document.getElementById('movie-file');
-  const movieFileInfo = document.querySelector('.file-info');
-  
-  let currentSection = 0;
-  
-  // Initialize year dropdown
-  function initYearDropdown() {
-      try {
-          const currentYear = new Date().getFullYear();
-          yearSelect.innerHTML = '<option value="">Select Year</option>';
-          
-          for (let year = currentYear; year >= 1900; year--) {
-              const option = document.createElement('option');
-              option.value = year;
-              option.textContent = year;
-              yearSelect.appendChild(option);
-          }
-      } catch (error) {
-          console.error('Year dropdown init failed:', error);
-          showError('Failed to initialize form. Please refresh.');
-      }
-  }
-  
-  // File validation
-  function isValidFile(file, allowedTypes, maxSizeMB) {
-      const extension = file.name.split('.').pop().toLowerCase();
-      const isValidType = allowedTypes.includes(extension);
-      const isValidSize = file.size <= maxSizeMB * 1024 * 1024;
-      
-      return {
-          valid: isValidType && isValidSize,
-          errors: [
-              !isValidType && `Invalid file type. Allowed: ${allowedTypes.join(', ')}`,
-              !isValidSize && `File too large. Max: ${maxSizeMB}MB`
-          ].filter(Boolean)
-      };
-  }
+    $('.next-btn').click(function() {
+        if (validateStep(currentStep)) {
+            currentStep++;
+            updateForm();
+        }
+    });
 
-  // File upload handlers
-  function setupFileUploads() {
-      // Poster image preview
-      posterInput.addEventListener('change', function(e) {
-          try {
-              if (e.target.files.length > 0) {
-                  const file = e.target.files[0];
-                  const validation = isValidFile(file, ALLOWED_IMAGE_TYPES, 10);
-                  
-                  if (!validation.valid) {
-                      showError(validation.errors.join(', '));
-                      e.target.value = '';
-                      return;
-                  }
+    $('.prev-btn').click(function() {
+        currentStep--;
+        updateForm();
+    });
 
-                  const reader = new FileReader();
-                  
-                  reader.onload = function(event) {
-                      posterPreview.innerHTML = `<img src="${event.target.result}" alt="Poster Preview">`;
-                      posterPreview.style.display = 'block';
-                  };
-                  
-                  reader.onerror = () => {
-                      throw new Error('Failed to read image file');
-                  };
-                  
-                  reader.readAsDataURL(file);
-              }
-          } catch (error) {
-              console.error('Poster upload error:', error);
-              showError('Failed to process poster image');
-          }
-      });
-      
-      // Movie file info display
-      movieFileInput.addEventListener('change', function(e) {
-          try {
-              if (e.target.files.length > 0) {
-                  const file = e.target.files[0];
-                  const validation = isValidFile(file, ALLOWED_MOVIE_TYPES, MAX_FILE_SIZE_MB);
-                  
-                  if (!validation.valid) {
-                      showError(validation.errors.join(', '));
-                      e.target.value = '';
-                      movieFileInfo.textContent = '';
-                      return;
-                  }
+    function updateForm() {
+        $('.form-section').removeClass('active');
+        $(`#${getStepId(currentStep)}`).addClass('active');
+        
+        // Update progress bar
+        $('.step').removeClass('active');
+        $(`.step:nth-child(${currentStep})`).addClass('active');
+        
+        // Update review section if we're on the last step
+        if (currentStep === 4) {
+            updateReviewSection();
+        }
+    }
 
-                  const fileSize = (file.size / (1024 * 1024)).toFixed(2);
-                  movieFileInfo.textContent = `${file.name} (${fileSize} MB)`;
-              }
-          } catch (error) {
-              console.error('Movie file error:', error);
-              showError('Failed to process movie file');
-          }
-      });
-  }
+    function getStepId(step) {
+        switch(step) {
+            case 1: return 'basic-info';
+            case 2: return 'media-details';
+            case 3: return 'additional-info';
+            case 4: return 'review-submit';
+            default: return 'basic-info';
+        }
+    }
 
-  // Form navigation
-  function setupNavigation() {
-      document.querySelectorAll('.next-btn').forEach(button => {
-          button.addEventListener('click', function() {
-              if (validateSection(currentSection)) {
-                  switchSection(currentSection + 1);
-              }
-          });
-      });
-      
-      document.querySelectorAll('.prev-btn').forEach(button => {
-          button.addEventListener('click', function() {
-              switchSection(currentSection - 1);
-          });
-      });
-  }
+    function validateStep(step) {
+        let isValid = true;
+        
+        if (step === 1) {
+            if (!$('#title').val()) {
+                $('#title').focus();
+                alert('Please enter a movie title');
+                isValid = false;
+            } else if (!$('#release-year').val()) {
+                $('#release-year').focus();
+                alert('Please select a release year');
+                isValid = false;
+            } else if (!$('#minutes').val() && !$('#hours').val()) {
+                $('#minutes').focus();
+                alert('Please enter duration (at least minutes)');
+                isValid = false;
+            }
+        } else if (step === 2) {
+            if (!$('#drive-link').val()) {
+                $('#drive-link').focus();
+                alert('Please enter Google Drive link');
+                isValid = false;
+            } else if (!$('#poster-link').val()) {
+                $('#poster-link').focus();
+                alert('Please enter poster image URL');
+                isValid = false;
+            }
+        } else if (step === 3) {
+            if (!$('#movie-type').val()) {
+                $('#movie-type').focus();
+                alert('Please select movie type');
+                isValid = false;
+            } else if (!$('#quality').val()) {
+                $('#quality').focus();
+                alert('Please select quality');
+                isValid = false;
+            } else if ($('input[name="genres[]"]:checked').length === 0) {
+                $('input[name="genres[]"]').first().focus();
+                alert('Please select at least one genre');
+                isValid = false;
+            } else if (!$('#language').val()) {
+                $('#language').focus();
+                alert('Please select language');
+                isValid = false;
+            }
+        }
+        
+        return isValid;
+    }
 
-  function switchSection(newSection) {
-      formSections[currentSection].classList.remove('active');
-      progressSteps[currentSection].classList.remove('active');
-      
-      currentSection = newSection;
-      
-      formSections[currentSection].classList.add('active');
-      progressSteps[currentSection].classList.add('active');
-      
-      if (currentSection === 3) {
-          updateReviewSection();
-      }
-  }
+    function updateReviewSection() {
+        // Basic Info
+        $('#review-title').html(`<strong>Title:</strong> ${$('#title').val()}`);
+        $('#review-description').html(`<strong>Description:</strong> ${$('#description').val() || 'Not provided'}`);
+        $('#review-year').html(`<strong>Release Year:</strong> ${$('#release-year').val()}`);
+        
+        const hours = $('#hours').val() || 0;
+        const minutes = $('#minutes').val() || 0;
+        $('#review-duration').html(`<strong>Duration:</strong> ${formatDuration(hours, minutes)}`);
+        
+        // Media Details
+        $('#review-drive-link').html(`<strong>Drive Link:</strong> <a href="${$('#drive-link').val()}" target="_blank">View Link</a>`);
+        $('#review-poster').html(`<strong>Poster:</strong> <a href="${$('#poster-link').val()}" target="_blank">View Image</a>`);
+        
+        if ($('#trailer-link').val()) {
+            $('#review-trailer').html(`<strong>Trailer:</strong> <a href="${$('#trailer-link').val()}" target="_blank">Watch Trailer</a>`);
+        } else {
+            $('#review-trailer').html('<strong>Trailer:</strong> Not provided');
+        }
+        
+        // Additional Info
+        $('#review-type-quality').html(`<strong>Type/Quality:</strong> ${$('#movie-type').find('option:selected').text()} | ${$('#quality').find('option:selected').text()}`);
+        
+        const genres = [];
+        $('input[name="genres[]"]:checked').each(function() {
+            genres.push($(this).val());
+        });
+        $('#review-genres').html(`<strong>Genres:</strong> ${genres.join(', ')}`);
+        
+        $('#review-directors').html(`<strong>Directors:</strong> ${$('#directors').val() || 'Not provided'}`);
+        $('#review-cast').html(`<strong>Cast:</strong> ${$('#cast').val() || 'Not provided'}`);
+        $('#review-language').html(`<strong>Language:</strong> ${$('#language').find('option:selected').text()}`);
+    }
 
-  // Form validation
-  function validateSection(sectionIndex) {
-      try {
-          const section = formSections[sectionIndex];
-          const requiredInputs = section.querySelectorAll('[required]');
-          let isValid = true;
-          
-          requiredInputs.forEach(input => {
-              if (!input.value.trim()) {
-                  input.classList.add('error');
-                  isValid = false;
-              } else {
-                  input.classList.remove('error');
-              }
-          });
-          
-          // Media files validation
-          if (sectionIndex === 1) {
-              const movieFile = movieFileInput.files[0];
-              const posterFile = posterInput.files[0];
-              
-              if (!movieFile) {
-                  movieFileInput.closest('.file-upload-box').classList.add('error');
-                  isValid = false;
-              } else {
-                  movieFileInput.closest('.file-upload-box').classList.remove('error');
-              }
-              
-              if (!posterFile) {
-                  posterInput.closest('.file-upload-box').classList.add('error');
-                  isValid = false;
-              } else {
-                  posterInput.closest('.file-upload-box').classList.remove('error');
-              }
-          }
-          
-          if (!isValid) {
-              showError('Please complete all required fields');
-          }
-          
-          return isValid;
-      } catch (error) {
-          console.error('Validation error:', error);
-          showError('Validation failed. Please check your inputs.');
-          return false;
-      }
-  }
+    function formatDuration(hours, minutes) {
+        hours = hours || 0;
+        minutes = minutes || 0;
+        
+        let duration = '';
+        if (hours > 0) duration += `${hours}h `;
+        if (minutes > 0) duration += `${minutes}min`;
+        return duration || '0min';
+    }
 
-  // Update review section
-  function updateReviewSection() {
-      try {
-          document.getElementById('review-title').textContent = 
-              `Title: ${document.getElementById('title').value}`;
-          document.getElementById('review-description').textContent = 
-              `Description: ${document.getElementById('description').value || 'None'}`;
-          document.getElementById('review-year-duration').textContent = 
-              `${document.getElementById('release-year').value} | ${document.getElementById('duration').value} minutes`;
-          
-          const movieFile = movieFileInput.files[0];
-          document.getElementById('review-movie-file').textContent = 
-              `Movie File: ${movieFile ? movieFile.name : 'None'}`;
-          
-          const posterFile = posterInput.files[0];
-          document.getElementById('review-poster').textContent = 
-              `Poster Image: ${posterFile ? posterFile.name : 'None'}`;
-          
-          document.getElementById('review-trailer').textContent = 
-              `Trailer Link: ${document.getElementById('trailer-link').value || 'None'}`;
-          
-          document.getElementById('review-type-rating').textContent = 
-              `Type: ${document.getElementById('movie-type').value} | Rating: ${document.getElementById('rating').value}`;
-          
-          const selectedGenres = Array.from(document.querySelectorAll('input[name="genres[]"]:checked'))
-              .map(checkbox => checkbox.nextElementSibling.textContent)
-              .join(', ');
-          document.getElementById('review-genres').textContent = 
-              `Genres: ${selectedGenres || 'None'}`;
-          
-          document.getElementById('review-directors').textContent = 
-              `Directors: ${document.getElementById('directors').value || 'None'}`;
-          document.getElementById('review-cast').textContent = 
-              `Cast: ${document.getElementById('cast').value || 'None'}`;
-          document.getElementById('review-language').textContent = 
-              `Language: ${document.getElementById('language').value}`;
-      } catch (error) {
-          console.error('Review update failed:', error);
-          showError('Failed to generate review');
-      }
-  }
-
-  // Form submission
-  async function handleFormSubmit(e) {
-      e.preventDefault();
-      
-      try {
-          if (!validateSection(currentSection)) return;
-          if (!document.getElementById('terms-agreement').checked) {
-              showError('You must agree to the terms');
-              return;
-          }
-
-          const submitBtn = form.querySelector('.submit-btn');
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Uploading...';
-          
-          const formData = new FormData(form);
-          
-          // Add debug info
-          console.log('Submitting form with:', {
-              title: formData.get('title'),
-              files: {
-                  movie: formData.get('movie_file').name,
-                  poster: formData.get('poster_image').name
-              }
-          });
-
-          const response = await fetch(API_ENDPOINT, {
-              method: 'POST',
-              body: formData
-          });
-          
-          if (!response.ok) {
-              const error = await response.text();
-              throw new Error(error || 'Server error');
-          }
-          
-          const result = await response.json();
-          
-          if (!result.success) {
-              throw new Error(result.message || 'Upload failed');
-          }
-
-          alert('Success! Movie submitted for review.');
-          resetForm();
-      } catch (error) {
-          console.error('Upload failed:', {
-              error: error,
-              message: error.message,
-              stack: error.stack
-          });
-          showError(`Upload failed: ${error.message}`);
-      } finally {
-          const submitBtn = form.querySelector('.submit-btn');
-          if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'Submit Movie';
-          }
-      }
-  }
-
-  // Reset form
-  function resetForm() {
-      form.reset();
-      posterPreview.style.display = 'none';
-      posterPreview.innerHTML = '';
-      movieFileInfo.textContent = '';
-      
-      // Remove error classes
-      document.querySelectorAll('.error').forEach(el => {
-          el.classList.remove('error');
-      });
-      
-      switchSection(0);
-  }
-
-  // Show error message
-  function showError(message) {
-      const errorDiv = document.getElementById('error-message') || createErrorElement();
-      errorDiv.textContent = message;
-      errorDiv.style.display = 'block';
-      
-      setTimeout(() => {
-          errorDiv.style.display = 'none';
-      }, 5000);
-  }
-
-  function createErrorElement() {
-      const errorDiv = document.createElement('div');
-      errorDiv.id = 'error-message';
-      errorDiv.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          padding: 15px;
-          background: #e50914;
-          color: white;
-          border-radius: 5px;
-          display: none;
-          z-index: 1000;
-      `;
-      document.body.appendChild(errorDiv);
-      return errorDiv;
-  }
-
-  // Initialize everything
-  function init() {
-      try {
-          initYearDropdown();
-          setupFileUploads();
-          setupNavigation();
-          form.addEventListener('submit', handleFormSubmit);
-          createErrorElement();
-      } catch (error) {
-          console.error('Initialization failed:', error);
-          showError('System error. Please refresh.');
-      }
-  }
-
-  init();
+    // Form submission
+    $('#movieUploadForm').submit(function(e) {
+        e.preventDefault();
+        
+        if (!validateStep(4)) return;
+        if (!$('#terms-agreement').is(':checked')) {
+            alert('Please agree to the terms of service');
+            return;
+        }
+        
+        // Get duration values
+        const hours = parseInt($('#hours').val()) || 0;
+        const minutes = parseInt($('#minutes').val()) || 0;
+        const durationFormatted = formatDuration(hours, minutes);
+        const durationMinutes = (hours * 60) + minutes;
+        
+        // Add to form data
+        const formData = $(this).serializeArray();
+        formData.push({name: 'duration_formatted', value: durationFormatted});
+        formData.push({name: 'duration_minutes', value: durationMinutes});
+        
+        // Submit via AJAX
+        $('.submit-btn').html('<i class="fas fa-spinner fa-spin me-2"></i> Submitting...').prop('disabled', true);
+        
+        $.ajax({
+            url: 'php/uploadMovie.php',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    // Reset form
+                    $('#movieUploadForm')[0].reset();
+                    $('.step').removeClass('active');
+                    $('.step:first').addClass('active');
+                    $('.form-section').removeClass('active');
+                    $('#basic-info').addClass('active');
+                    currentStep = 1;
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                let errorMessage = 'Request failed: ';
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    errorMessage += response.message || error;
+                } catch (e) {
+                    errorMessage += xhr.responseText || error;
+                }
+                alert(errorMessage);
+            },
+            complete: function() {
+                $('.submit-btn').html('<i class="fas fa-upload me-2"></i> Submit Movie').prop('disabled', false);
+            }
+        });
+    });
 });
