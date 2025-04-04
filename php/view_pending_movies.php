@@ -6,8 +6,6 @@
     <title>Pending Movies - Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/css/view_pending_movies.css">
-
     <style>
         :root {
             --bg-dark: #0a0a0a;
@@ -181,10 +179,11 @@
             background-color: #138496;
         }
     </style>
-    
 </head>
-<body>
-   
+<body >
+<a href="../index.html" class="px-lg-5"><img src="../img/logo.png" alt="" height="50" class="z-1">
+</a>
+
     <div class="movie-container">
         <h1 class="text-center mb-4"><i class="fas fa-clock me-2"></i> Pending Movies</h1>
         
@@ -386,6 +385,149 @@
                     minute: '2-digit'
                 });
             }
+
+            // Add this inside your DOMContentLoaded event listener
+// Add this inside your DOMContentLoaded event listener after renderMovies()
+
+
+document.addEventListener('click', function (e) {
+    const approveBtn = e.target.closest('.btn-approve');
+    const rejectBtn = e.target.closest('.btn-reject');
+
+    if (approveBtn) {
+        const movieId = approveBtn.dataset.movieId;
+        const movieCard = approveBtn.closest('.movie-card');
+        handleMovieApproval(movieId, movieCard);
+    }
+
+    if (rejectBtn) {
+        const movieId = rejectBtn.dataset.movieId;
+        const movieCard = rejectBtn.closest('.movie-card');
+        handleMovieRejection(movieId, movieCard);
+    }
+});
+
+async function handleMovieApproval(movieId, movieCard) {
+    if (!confirm('Are you sure you want to approve this movie?')) return;
+
+    const approveBtn = movieCard.querySelector('.btn-approve');
+    const originalText = approveBtn.innerHTML;
+
+    approveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing';
+    approveBtn.disabled = true;
+
+    try {
+        const response = await fetch('approve_movie.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `movie_id=${movieId}`,
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server error:', errorText);
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message || 'Approval failed');
+        }
+
+        // Success animation
+        movieCard.style.transition = 'all 0.3s';
+        movieCard.style.opacity = '0';
+        movieCard.style.transform = 'translateY(-20px)';
+
+        setTimeout(() => {
+            movieCard.closest('.col-lg-6').remove();
+
+            // Show empty state if no movies left
+            if (document.querySelectorAll('.movie-card').length === 0) {
+                document.getElementById('no-movies').classList.remove('d-none');
+            }
+
+            // Show success notification
+            showNotification('Movie approved successfully!', 'success');
+        }, 300);
+    } catch (error) {
+        console.error('Approval error:', error);
+        showNotification(`Error: ${error.message}`, 'error');
+    } finally {
+        approveBtn.innerHTML = originalText;
+        approveBtn.disabled = false;
+    }
+}
+
+async function handleMovieRejection(movieId, movieCard) {
+    if (!confirm('Are you sure you want to reject this movie?')) return;
+
+    const rejectBtn = movieCard.querySelector('.btn-reject');
+    const originalText = rejectBtn.innerHTML;
+
+    rejectBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing';
+    rejectBtn.disabled = true;
+
+    try {
+        const response = await fetch('reject_movie.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `movie_id=${movieId}`,
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message || 'Rejection failed');
+        }
+
+        // Success animation
+        movieCard.style.transition = 'all 0.3s';
+        movieCard.style.opacity = '0';
+        movieCard.style.transform = 'translateY(-20px)';
+
+        setTimeout(() => {
+            movieCard.closest('.col-lg-6').remove();
+
+            // Show empty state if no movies left
+            if (document.querySelectorAll('.movie-card').length === 0) {
+                document.getElementById('no-movies').classList.remove('d-none');
+            }
+
+            // Show success notification
+            showNotification('Movie rejected successfully!', 'success');
+        }, 300);
+        } catch (error) {
+            console.error('Rejection error:', error);
+            showNotification(`Error: ${error.message}`, 'error');
+        } finally {
+            rejectBtn.innerHTML = originalText;
+            rejectBtn.disabled = false;
+        }
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} fixed-top mx-auto mt-3`;
+    notification.style.maxWidth = '500px';
+    notification.style.zIndex = '9999';
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
         });
     </script>
 </body>

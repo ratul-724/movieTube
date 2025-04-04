@@ -48,6 +48,7 @@ try {
     $drive_link = filter_var($_POST['drive_link'], FILTER_SANITIZE_URL);
     $poster_link = filter_var($_POST['poster_link'], FILTER_SANITIZE_URL);
     $trailer_link = !empty($_POST['trailer_link']) ? filter_var($_POST['trailer_link'], FILTER_SANITIZE_URL) : null;
+
     
     $movie_type = sanitizeInput($conn, $_POST['movie_type']);
     $quality = sanitizeInput($conn, $_POST['quality']);
@@ -72,7 +73,7 @@ try {
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
     $stmt->bind_param(
-        "ssisississssss",
+        "ssisisssssssss",
         $title, $description, $release_year, $duration_formatted, $duration_minutes,
         $drive_link, $poster_link, $trailer_link, $movie_type, $quality,
         $genres, $directors, $cast, $language
