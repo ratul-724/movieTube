@@ -9,6 +9,34 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/movie.css">
     <link rel="stylesheet" href="css/common.css">
+    <style>
+        /* Favorite button styles */
+        .favorite-btn {
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            z-index: 3;
+            cursor: pointer;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        
+        .favorite-btn.active {
+            opacity: 1;
+        }
+        
+        .favorite-btn.active i {
+            color: #e50914 !important;
+            font-weight: 900;
+        }
+        
+        .movie-card:hover .favorite-btn {
+            opacity: 1;
+        }
+    </style>
+    
 </head>
 <body>
     <!-- Navbar -->
@@ -346,405 +374,20 @@
     <!-- search bar end here  -->
 
 
-     <!-- Movie Section start-->
-<section class="movie" id="allContentSection">
-    <div class="container mt-5">
-        <!-- Latest Movies Section -->
-        <div class="movie-section">
-            <h2 class="text-center p-2 fw-bold my-5"><span class="border-start border-end border-danger border-3 px-3">All Contents</span></h2>
-            <div class="row">
-                <!-- Movie Card 1 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/jokar.jpg" alt="jokar" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white z-2" id="rating">8.5</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">JOKER</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Action</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
+    <!-- Movie Section start-->
+    <section class="movie" id="allContentSection">
+        <div class="container mt-5">
+            <h2 class="text-center p-2 fw-bold my-5">
+                <span class="border-start border-end border-danger border-3 px-3">All Contents</span>
+            </h2>
+            <div class="row" id="movieGrid">
                 
-                <!-- Movie Card 2 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/animal.jpg" alt="animal" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white z-2" id="rating">8.6</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">ANIMAL</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Action</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 3 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/avatar.jpg" alt="avatar" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">9.5</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">AVATAR</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 4 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/archer.jpg" alt="archer" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.0</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">ARCHER</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 5 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/cars.jpg" alt="cars" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.0</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">CARS</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Animation</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 6 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/dora.jpg" alt="dora" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.1</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Dora the Explorer</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 7-->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/harryPoter.jpg" alt="harryPoter" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.8</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">HARRY POTER</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 8-->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/ironMan.jpg" alt="ironMan" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">9.0</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">IRON MAN</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Action</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 9 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/jumanji.jpg" alt="jumanji" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">9.8</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Jumanji: Welcome to the Jungle</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 10 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/megan.jpg" alt="megan" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.0</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">M3GAN (2022)</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Horror/Sci-fi</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 11 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/moana.jpg" alt="moana" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.3</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Moana (2016)</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 12 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/moneyHeist.jpg" alt="moneyHeist" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">9.9</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">MONEY HEIST</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Thriller</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 13 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/monkeyMan.jpg" alt="monkeyMan" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">7.0</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">MONKEY MAN (2024)</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Action/Thriller</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 14 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/oppenheimer.jpg" alt="oppenheimer" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.3</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Oppenheimer (2023)</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Thriller</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 15 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/spiderMan.jpg" alt="spiderMan" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.9</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">SPIDER MAN</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Action</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 16 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/squidGames.jpg" alt="squidGames" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.0</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Squid Game</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Thriller</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 17 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/titanic.jpg" alt="titanic" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.9</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Titanic</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Romance/Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Movie Card 18 -->
-                <div class="col-md-2 col-6">
-                    <div class="movie-card position-relative">
-                        <a href="movie-detail.html">
-                            <img src="img/poster/wonderWoman.jpg" alt="wonderWoman" class="w-100">
-                            <div class="rating d-flex align-items-center rounded-4"><i class="fa-solid fa-star text-warning"></i><span class="text-white rounded-4 z-2" id="rating">8.4</span></div>
-                            <div class="card-body h-100 w-100 text-white d-flex flex-column align-items-center justify-content-center text-center">
-                                <h5 class="card-title">Wonder Woman (2017)</h5>
-                                <p class="card-text">Dual Audio</p>
-                                <span class="badge mb-2">HD</span>
-                                <span class="badge">Action/Advanture</span>
-                            </div>
-                        </a>
-                        <!-- Favorite Button (Bottom Position) -->
-                        <button class="favorite-btn position-absolute bottom-0 end-0 m-2 bg-transparent border-0 p-2" aria-label="Add to favorites">
-                            <i class="fa-regular fa-heart text-white fs-5"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Movie Section end-->
+    </section>
+    <!-- Movie Section end-->
 
-<style>
-    /* Favorite button styles */
-    .favorite-btn {
-        transition: all 0.3s ease;
-        opacity: 0.8;
-        z-index: 3;
-        cursor: pointer;
-    }
-    
-    .favorite-btn:hover {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    
-    .favorite-btn.active {
-        opacity: 1;
-    }
-    
-    .favorite-btn.active i {
-        color: #e50914 !important;
-        font-weight: 900;
-    }
-    
-    .movie-card:hover .favorite-btn {
-        opacity: 1;
-    }
-</style>
+
 
 
     <!-- footer section start  -->
@@ -826,6 +469,7 @@
     <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/movie.js"></script>
     <script src="js/common.js"></script>
 </body>
