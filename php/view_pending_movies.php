@@ -169,20 +169,14 @@
         .btn-reject:hover {
             background-color: #c82333;
         }
-
-        .btn-edit {
-            background-color: #17a2b8;
-            color: white;
-        }
-
-        .btn-edit:hover {
-            background-color: #138496;
-        }
     </style>
 </head>
 <body >
-<a href="../index.html" class="px-lg-5"><img src="../img/logo.png" alt="" height="50" class="z-1">
-</a>
+    <div class="d-flex justify-content-between align-items-center px-5 mb-2">
+        <a href="../index.html" ><img src="../img/logo.png" alt="" height="50" class="z-1" title="Home"></a>
+        </a>
+        <a href="../uploadMovie.html" class="text-decoration-none text-white btn btn-outline-danger"><i class="fa-solid fa-arrow-left"></i> Back to upload</a>
+    </div>
 
     <div class="movie-container">
         <h1 class="text-center mb-4"><i class="fas fa-clock me-2"></i> Pending Movies</h1>
@@ -340,9 +334,6 @@
                                 </button>
                                 <button class="action-btn btn-reject" data-movie-id="${movie.id}">
                                     <i class="fas fa-times"></i> Reject
-                                </button>
-                                <button class="action-btn btn-edit" data-movie-id="${movie.id}">
-                                    <i class="fas fa-edit"></i> Edit
                                 </button>
                             </div>
                         </div>
