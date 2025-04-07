@@ -55,26 +55,32 @@ document.querySelectorAll('.favorite-btn').forEach(btn => {
 // show movie from server code start here 
 document.addEventListener('DOMContentLoaded', function () {
     const movieGrid = document.getElementById('movieGrid');
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination-container text-center mt-4';
+    movieGrid.parentNode.appendChild(paginationContainer);
 
-    // Fetch movies from the server
-    fetch('php/fetch_approved_movies.php')
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            renderMovies(data.movies);
-        } else {
-            movieGrid.innerHTML = `<p class="text-center text-danger">${data.message}</p>`;
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching movies:', error);
-        movieGrid.innerHTML = `<p class="text-center text-danger">Failed to load movies. Please try again later.</p>`;
-    });
+    let currentPage = 1;
 
-    // Render movies
-    function renderMovies(approved_movies) {
-        movieGrid.innerHTML = ''; 
-        approved_movies.forEach(movie => {
+    function fetchMovies(page = 1) {
+        fetch(`php/fetch_approved_movies.php?page=${page}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    renderMovies(data.movies);
+                    renderPagination(data.totalPages, data.currentPage);
+                } else {
+                    movieGrid.innerHTML = `<p class="text-center text-danger">${data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching movies:', error);
+                movieGrid.innerHTML = `<p class="text-center text-danger">Failed to load movies. Please try again later.</p>`;
+            });
+    }
+
+    function renderMovies(movies) {
+        movieGrid.innerHTML = '';
+        movies.forEach(movie => {
             const movieCard = `
                 <div class="col-md-2 col-6">
                     <div class="movie-card position-relative">
@@ -100,6 +106,49 @@ document.addEventListener('DOMContentLoaded', function () {
             movieGrid.insertAdjacentHTML('beforeend', movieCard);
         });
     }
+
+    function renderPagination(totalPages, currentPage) {
+        console.log('Rendering pagination:', { totalPages, currentPage }); // Debugging
+        paginationContainer.innerHTML = '';
+    
+        const maxVisiblePages = 5; // Number of visible page numbers
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+    
+        // Previous Button
+        if (currentPage > 1) {
+            const prevButton = document.createElement('button');
+            prevButton.className = 'btn btn-outline-danger mx-1';
+            prevButton.textContent = 'Prev';
+            prevButton.addEventListener('click', () => fetchMovies(currentPage - 1));
+            paginationContainer.appendChild(prevButton);
+        }
+    
+        // Page Numbers
+        for (let i = startPage; i <= endPage; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.className = `btn btn-outline-${i === currentPage ? 'danger active' : 'dark'} mx-1`;
+            pageButton.textContent = i;
+            pageButton.addEventListener('click', () => fetchMovies(i));
+            paginationContainer.appendChild(pageButton);
+        }
+    
+        // Next Button
+        if (currentPage < totalPages) {
+            const nextButton = document.createElement('button');
+            nextButton.className = 'btn btn-outline-danger mx-1';
+            nextButton.textContent = 'Next';
+            nextButton.addEventListener('click', () => fetchMovies(currentPage + 1));
+            paginationContainer.appendChild(nextButton);
+        }
+    }
+   
+    // Initial fetch
+    fetchMovies(currentPage);
 });
 
 // show movie from server code end here 
